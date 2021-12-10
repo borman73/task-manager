@@ -32,12 +32,12 @@ class Admin::UsersController < Admin::ApplicationController
     else
       render :edit
     end
+  end  
 
-    def destroy
-      @user = User.find(params[:id])
-      @user.destroy
-      redirect_to admin_users_path
-    end
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to admin_users_path
   end
 
   private
