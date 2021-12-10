@@ -9,10 +9,10 @@ FactoryBot.define do
 
     factory :admin do
       type { 'Admin' }
-      first_name { generate :string }
-      last_name { generate :string }
+      first_name
+      last_name
       email
-      password {generate :string }
+      password
     end
 
     factory :developer do
