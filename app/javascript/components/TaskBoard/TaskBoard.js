@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import KanbanBoard from '@asseinfo/react-kanban';
-import { propOr } from 'ramda';
 import '@asseinfo/react-kanban/dist/styles.css';
+import { propOr } from 'ramda';
 
 import Task from 'components/Task';
 import TasksRepository from 'repositories/TasksRepository';
 import ColumnHeader from 'components/ColumnHeader';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import AddPopup from 'components/AddPopup';
+import TaskForm from 'forms/TaskForm';
+
+import useStyles from './useStyles';
 
 const STATES = [
   { key: 'new_task', value: 'New' },
@@ -17,6 +23,11 @@ const STATES = [
   { key: 'archived', value: 'Archived' },
 ];
 
+const MODES = {
+  ADD: 'add',
+  NONE: 'none',
+};
+
 const initialBoard = {
   columns: STATES.map((column) => ({
     id: column.key,
@@ -27,8 +38,10 @@ const initialBoard = {
 };
 
 const TaskBoard = () => {
+  const styles = useStyles();
   const [board, setBoard] = useState(initialBoard);
   const [boardCards, setBoardCards] = useState([]);
+  const [mode, setMode] = useState(MODES.NONE);
   useEffect(() => loadBoard(), []);
   useEffect(() => generateBoard(), [boardCards]);
 
@@ -85,6 +98,21 @@ const TaskBoard = () => {
     STATES.map(({ key }) => loadColumnInitial(key));
   };
 
+  const handleOpenAddPopup = () => {
+    setMode(MODES.ADD);
+  };
+
+  const handleClose = () => {
+    setMode(MODES.NONE);
+  };
+
+  const handleTaskCreate = (params) => {
+    const attributes = TaskForm.attributesToSubmit(params);
+    return TasksRepository.create(attributes).then(({ data: { task } }) => {
+      loadColumnInitial(task.state);
+      setMode(MODES.NONE);
+    });
+  };
 
   const handleCardDragEnd = (task, source, destination) => {
     const transition = task.transitions.find(({ to }) => destination.toColumnId === to);
@@ -103,14 +131,21 @@ const TaskBoard = () => {
   };
 
   return (
-  <KanbanBoard
-    disableColumnDrag
-    onCardDragEnd={handleCardDragEnd}
-    renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
-    renderCard={(card) => <Task task={card} />}
-  >
-    {board}
-  </KanbanBoard>  
+  <div>
+    <KanbanBoard
+      disableColumnDrag
+      onCardDragEnd={handleCardDragEnd}
+      renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
+      renderCard={(card) => <Task task={card} />}
+    >
+      {board}
+    </KanbanBoard>
+    
+    <Fab onClick={handleOpenAddPopup} className={styles.addButton} color="primary" aria-label="add">
+        <AddIcon />
+    </Fab>
+    {mode === MODES.ADD && <AddPopup onCreateCard={handleTaskCreate} onClose={handleClose} />}
+  </div>
   );
 };
 
