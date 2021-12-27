@@ -5,6 +5,7 @@ import '@asseinfo/react-kanban/dist/styles.css';
 
 import Task from 'components/Task';
 import TasksRepository from 'repositories/TasksRepository';
+import ColumnHeader from 'components/ColumnHeader';
 
 const STATES = [
   { key: 'new_task', value: 'New' },
@@ -39,6 +40,21 @@ const TaskBoard = () => {
     });
   };
 
+  const loadColumnMore = (state, page = 1, perPage = 10) => {
+    loadColumn(state, page, perPage).then(({ data }) => {
+      setBoardCards((prevState) => {
+        const { cards } = prevState[state];
+        return {
+          ...prevState,
+          [state]: {
+            cards: [...cards, ...data.items],
+            meta: data.meta,
+          },
+        };
+      });
+    });
+  };
+
   const loadColumnInitial = (state, page = 1, perPage = 10) => {
     loadColumn(state, page, perPage).then(({ data }) => {
       setBoardCards((prevState) => {
@@ -69,7 +85,15 @@ const TaskBoard = () => {
     STATES.map(({ key }) => loadColumnInitial(key));
   };
 
-  return <KanbanBoard disableColumnDrag renderCard={card => <Task task={card} />}>{board}</KanbanBoard>;
+  return (
+  <KanbanBoard
+    disableColumnDrag
+    renderColumnHeader={(column) => <ColumnHeader column={column} onLoadMore={loadColumnMore} />}
+    renderCard={(card) => <Task task={card} />}
+  >
+    {board}
+  </KanbanBoard>  
+  );
 };
 
 export default TaskBoard;
