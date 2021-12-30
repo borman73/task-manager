@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useEffect, useState } from 'react';
 import KanbanBoard from '@asseinfo/react-kanban';
 import '@asseinfo/react-kanban/dist/styles.css';
@@ -72,16 +73,15 @@ const TaskBoard = () => {
 
   const loadColumnInitial = (state, page = 1, perPage = 10) => {
     loadColumn(state, page, perPage).then(({ data }) => {
-      setBoardCards((prevState) => {
-        return {
-          ...prevState,
-          [state]: { cards: data.items, meta: data.meta },
-        };
-      });
+      setBoardCards((prevState) => ({
+        ...prevState,
+        [state]: { cards: data.items, meta: data.meta },
+      }));
     });
   };
 
   const generateBoard = () => {
+    // eslint-disable-next-line no-shadow
     const board = {
       columns: STATES.map(({ key, value }) => ({
         id: key,
@@ -163,7 +163,7 @@ const TaskBoard = () => {
       >
         {board}
       </KanbanBoard>
-    
+
       <Fab onClick={handleOpenAddPopup} className={styles.addButton} color="primary" aria-label="add">
         <AddIcon />
       </Fab>
