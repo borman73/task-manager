@@ -545,6 +545,23 @@ export const apiV1TasksPath = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"api"],[2,
 
 /**
  * Generates rails route to
+ * /api/v1/users/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiV1UserPath = __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"api"],[2,[7,"/"],[2,[6,"v1"],[2,[7,"/"],[2,[6,"users"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /api/v1/users(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const apiV1UsersPath = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"api"],[2,[7,"/"],[2,[6,"v1"],[2,[7,"/"],[2,[6,"users"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+
+/**
+ * Generates rails route to
  * /board(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
@@ -815,3 +832,4 @@ export const sessionPath = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"session"],[1
  * @returns {string} route path
  */
 export const updateRailsDiskServicePath = __jsr.r({"encoded_token":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"rails"],[2,[7,"/"],[2,[6,"active_storage"],[2,[7,"/"],[2,[6,"disk"],[2,[7,"/"],[2,[3,"encoded_token"],[1,[2,[8,"."],[3,"format"]]]]]]]]]]]);
+
