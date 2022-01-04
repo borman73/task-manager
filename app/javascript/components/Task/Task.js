@@ -12,7 +12,7 @@ import TaskPresenter from 'presenters/TaskPresenter';
 import useStyles from './useStyles';
 
 const Task = ({ onClick, task }) => {
-  const styles = useStyles;
+  const styles = useStyles();
 
   const handleClick = () => onClick(task);
   const action = (
