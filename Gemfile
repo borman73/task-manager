@@ -19,6 +19,7 @@ gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 gem 'webpacker-react'
 gem 'jbuilder', '~> 2.7'
+gem 'js-routes'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
