@@ -75,8 +75,6 @@ export const useTasksActions = () => {
     });
   };
 
-  const loadBoard = () => STATES.map(({ key }) => loadColumn(key));
-
   const taskCreate = (attributes) => TasksRepository.create(attributes);
 
   const taskLoad = (id) => TasksRepository.show(id).then(({ data: { task } }) => task);
@@ -86,7 +84,6 @@ export const useTasksActions = () => {
   const taskDestroy = (task) => TasksRepository.destroy(TaskPresenter.id(task));
 
   return {
-    loadBoard,
     loadColumn,
     loadColumnMore,
     taskCreate,
