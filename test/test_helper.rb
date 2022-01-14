@@ -3,8 +3,6 @@ if ENV['COVERAGE']
   require 'simplecov'
   require 'simplecov-lcov'
 
-  Coveralls.wear!
-
   SimpleCov::Formatter::LcovFormatter.config do |c|
     c.report_with_single_file = true
     c.single_report_path = 'coverage/lcov/lcov.info'
