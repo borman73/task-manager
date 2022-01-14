@@ -5,6 +5,9 @@ require 'rails/test_help'
 if ENV['COVERAGE']
   require 'simplecov'
   require 'simplecov-lcov'
+  require 'coveralls'
+
+  Coveralls.wear!
 
   SimpleCov::Formatter::LcovFormatter.config do |c|
     c.report_with_single_file = true
