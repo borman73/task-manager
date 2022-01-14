@@ -1,9 +1,11 @@
+ENV['RAILS_ENV'] ||= 'test'
+require_relative '../config/environment'
+require 'rails/test_help'
+
 if ENV['COVERAGE']
   require 'coveralls'
   require 'simplecov'
   require 'simplecov-lcov'
-
-  Coveralls.wear!
 
   SimpleCov::Formatter::LcovFormatter.config do |c|
     c.report_with_single_file = true
@@ -14,10 +16,6 @@ if ENV['COVERAGE']
 
   SimpleCov.start('rails')
 end
-
-ENV['RAILS_ENV'] ||= 'test'
-require_relative '../config/environment'
-require 'rails/test_help'
 
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
