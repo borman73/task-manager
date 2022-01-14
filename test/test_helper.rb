@@ -13,7 +13,9 @@ if ENV['COVERAGE']
 
   SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
 
-  SimpleCov.start
+  SimpleCov.start do
+    add_filter "/test/"
+  end
 end
 
 class ActiveSupport::TestCase
