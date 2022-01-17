@@ -2,27 +2,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/borman73/task-manager/badge.svg)](https://coveralls.io/github/borman73/task-manager)
 
-# README
+[TaskManager deployed on Heroku](https://obscure-garden-26152.herokuapp.com)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# TaskManager
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+TaskManager is a tool for developers team that provides a Kanban-board to visualize project workflow. 
