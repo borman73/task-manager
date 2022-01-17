@@ -17,4 +17,12 @@ jobs:
         env:
           COVERAGE: true
           RAILS_ENV: test
-        run: docker-compose --file docker-compose.ci.yml run
+        run: docker-compose --file docker-compose.ci.yml run ci
+
+      - name: Coveralls
+        env:
+          COVERAGE: true
+        uses: coverallsapp/github-action@master
+        with:
+          path-to-lcov: 'coverage/lcov/lcov.info'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
