@@ -21,6 +21,7 @@ gem 'webpacker-react'
 gem 'jbuilder', '~> 2.7'
 gem 'js-routes'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'rollbar'
 
 group :development, :test do
   gem 'factory_bot_rails'
