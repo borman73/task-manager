@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'js-routes'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'rollbar'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'factory_bot_rails'
