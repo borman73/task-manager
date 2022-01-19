@@ -28,8 +28,8 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
     data = JSON.parse(response.body)
     created_task = Task.find(data['task']['id'])
 
-    assert created_task.present? 
-    assert created_task.assignee == assignee 
+    assert created_task.present?
+    assert created_task.assignee == assignee
     assert created_task.author == author
     assert_equal task_attributes.stringify_keys, created_task.slice(*task_attributes.keys)
   end
@@ -41,7 +41,7 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
     task_attributes = attributes_for(:task).
       merge({ author_id: author.id, assignee_id: assignee.id }).
       stringify_keys
-    
+
     assert_emails 1 do
       patch :update, params: { id: task.id, format: :json, task: task_attributes }
     end
