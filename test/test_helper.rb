@@ -29,4 +29,5 @@ class ActiveSupport::TestCase
   fixtures :all
 
   include AuthHelper
+  include ActionMailer::TestHelper
 end
