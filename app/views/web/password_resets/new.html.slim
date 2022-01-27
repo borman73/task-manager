@@ -1,0 +1,10 @@
+h3 Reset password
+
+= simple_form_for @password_reset, url: password_reset_path do |f|
+  p
+    = f.input :email
+  p
+    = f.button :submit, "Request password reset"
+  | You will receive email message with the link for setting a new password.
+  br
+  | The link will expire in 24 hours.
