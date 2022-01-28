@@ -10,7 +10,7 @@ class Web::PasswordResetsController < Web::ApplicationController
     if @password_reset.valid?
       @user = @password_reset.user
       @user.set_password_reset_digest
-      UserMailer.with({ user: @user }).password_reset.deliver_now
+      UserMailer.with({ user: @user }).password_reset.deliver_later
 
       redirect_to(new_session_path, notice: 'Password reset instructions were sent to your email address')
     else
