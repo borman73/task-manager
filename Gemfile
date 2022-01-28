@@ -25,6 +25,7 @@ gem 'rollbar'
 gem 'newrelic_rpm'
 gem 'sidekiq'
 gem 'sidekiq-failures'
+gem 'sidekiq-throttled'
 
 group :development, :test do
   gem 'factory_bot_rails'
