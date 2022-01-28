@@ -17,7 +17,8 @@ if ENV['COVERAGE']
   SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
 
   SimpleCov.start do
-    add_filter ['/test/', '*/concerns/*' ]
+    add_filter '/test/'
+    add_filter '/app/controllers/concerns/'
   end
 end
 
