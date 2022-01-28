@@ -1,10 +1,5 @@
 h4 Log in
 = simple_form_for @session, url: session_path do |f|
-  p 
-    - flash.each do |type, message|
-      .flash
-      b
-        = message
   p
     = f.input :email
     = f.input :password
