@@ -24,6 +24,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'rollbar'
 gem 'newrelic_rpm'
 gem 'sidekiq'
+gem 'sidekiq-failures'
 
 group :development, :test do
   gem 'factory_bot_rails'
