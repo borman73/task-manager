@@ -1,0 +1,11 @@
+h3 Set a new password for your account
+
+= simple_form_for @user, url: password_reset_path, method: :patch, as: :user do |f|
+  = f.hidden_field :password_reset_digest, :value => @user.password_reset_digest
+  = f.hidden_field :email, :value => @user.email
+  p
+    = f.input :password
+  p
+    = f.input :password_confirmation
+  p
+    = f.button :submit, "Change password"
