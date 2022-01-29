@@ -1,6 +1,7 @@
 require 'sidekiq/web'
-require "sidekiq/throttled"
-require "sidekiq/throttled/web"
+require 'sidekiq/throttled'
+require 'sidekiq/throttled/web'
+require 'sidekiq_unique_jobs/web'
 
 Sidekiq::Throttled.setup!
 Sidekiq::Throttled::Registry.add(:mailer, { threshold: { limit: 1, period: 5.seconds } })
