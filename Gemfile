@@ -27,6 +27,9 @@ gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sidekiq-throttled'
 gem 'sidekiq-unique-jobs'
+gem 'mini_magick'
+gem 'virtus'
+gem 'file_validators'
 
 group :development, :test do
   gem 'factory_bot_rails'
