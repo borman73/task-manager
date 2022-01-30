@@ -2,6 +2,8 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
 
+  routes.default_url_options[:host] = 'localhost:3000'
+
   config.web_console.whitelisted_ips = '0.0.0.0/0'
   # Settings specified here will take precedence over those in config/application.rb.
 
