@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import UserSelect from 'components/UserSelect';
 import ImageUpload from 'components/ImageUpload';
 import TaskPresenter from 'presenters/TaskPresenter';
+import 'react-image-crop/dist/ReactCrop.css';
 
 import useStyles from './useStyles';
 
@@ -54,15 +55,17 @@ const Form = ({ errors, onChange, onAttachImage, onRemoveImage, task }) => {
         helperText={errors.assignee}
       />
       {isNil(TaskPresenter.imageUrl(task)) ? (
-        <div className={styles.imageUploadContainer}>
+        <div>
           <ImageUpload onUpload={onAttachImage} />
         </div>
       ) : (
         <div className={styles.previewContainer}>
           <img className={styles.preview} src={TaskPresenter.imageUrl(task)} alt="Attachment" />
-          <Button variant="contained" size="small" color="primary" onClick={onRemoveImage}>
-            Remove image
-          </Button>
+          <div>
+            <Button variant="contained" size="small" color="primary" onClick={onRemoveImage}>
+              Remove image
+            </Button>
+          </div>
         </div>
       )}
     </form>
