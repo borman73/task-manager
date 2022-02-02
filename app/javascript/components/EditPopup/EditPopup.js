@@ -53,7 +53,7 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onCardLoad, onCardUpdate, o
   const isLoading = isNil(task);
 
   const handleUploadImage = (attachment) => {
-    setSaving(true);
+    onCardUpdate(task);
 
     onAttachImage(task, attachment).catch((error) => {
       setSaving(false);
@@ -63,7 +63,7 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onCardLoad, onCardUpdate, o
   };
 
   const handleRemoveImage = () => {
-    setSaving(true);
+    onCardUpdate(task);
 
     onRemoveImage(task).catch((error) => {
       setSaving(false);

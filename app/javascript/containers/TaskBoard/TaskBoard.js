@@ -104,12 +104,12 @@ const TaskBoard = () => {
 
   const handleAttachImage = (task, attachment) =>
     uploadImage(task, attachment).then(() => {
-      handleClose();
+      handleOpenEditPopup(task);
     });
 
   const handleRemoveImage = (task) =>
     removeImage(task).then(() => {
-      handleClose();
+      handleOpenEditPopup(task);
     });
 
   return (
