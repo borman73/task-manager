@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import { propEq } from 'ramda';
 import { createSlice } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
@@ -83,6 +82,10 @@ export const useTasksActions = () => {
 
   const taskDestroy = (task) => TasksRepository.destroy(TaskPresenter.id(task));
 
+  const uploadImage = (task, attachment) => TasksRepository.attachImage(task.id, attachment);
+
+  const removeImage = (task) => TasksRepository.removeImage(task.id);
+
   return {
     loadColumn,
     loadColumnMore,
@@ -90,5 +93,7 @@ export const useTasksActions = () => {
     taskLoad,
     taskUpdate,
     taskDestroy,
+    uploadImage,
+    removeImage,
   };
 };

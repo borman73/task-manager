@@ -22,7 +22,18 @@ const MODES = {
 };
 
 const TaskBoard = () => {
-  const { board, loadBoard, loadColumn, taskLoad, loadColumnMore, taskCreate, taskUpdate, taskDestroy } = useTasks();
+  const {
+    board,
+    loadBoard,
+    loadColumn,
+    taskLoad,
+    loadColumnMore,
+    taskCreate,
+    taskUpdate,
+    taskDestroy,
+    uploadImage,
+    removeImage,
+  } = useTasks();
   const [mode, setMode] = useState(MODES.NONE);
   const [openedTaskId, setOpenedTaskId] = useState(null);
   const styles = useStyles();
@@ -91,6 +102,16 @@ const TaskBoard = () => {
       handleClose();
     });
 
+  const handleAttachImage = (task, attachment) =>
+    uploadImage(task, attachment).then(() => {
+      handleOpenEditPopup(task);
+    });
+
+  const handleRemoveImage = (task) =>
+    removeImage(task).then(() => {
+      handleOpenEditPopup(task);
+    });
+
   return (
     <>
       <Fab onClick={handleOpenAddPopup} className={styles.addButton} color="primary" aria-label="add">
@@ -112,6 +133,8 @@ const TaskBoard = () => {
           onCardLoad={handleTaskLoad}
           onCardDestroy={handleTaskDestroy}
           onCardUpdate={handleTaskUpdate}
+          onAttachImage={handleAttachImage}
+          onRemoveImage={handleRemoveImage}
           onClose={handleClose}
           cardId={openedTaskId}
         />

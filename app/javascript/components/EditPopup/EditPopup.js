@@ -17,7 +17,7 @@ import Form from './Form';
 import TaskPresenter from 'presenters/TaskPresenter';
 import useStyles from './useStyles';
 
-const EditPopup = ({ cardId, onClose, onCardDestroy, onCardLoad, onCardUpdate }) => {
+const EditPopup = ({ cardId, onClose, onCardDestroy, onCardLoad, onCardUpdate, onAttachImage, onRemoveImage }) => {
   const [task, setTask] = useState(null);
   const [isSaving, setSaving] = useState(false);
   const [errors, setErrors] = useState({});
@@ -49,7 +49,28 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onCardLoad, onCardUpdate })
       alert(`Destruction Failed! Error: ${error.message}`);
     });
   };
+
   const isLoading = isNil(task);
+
+  const handleUploadImage = (attachment) => {
+    onCardUpdate(task);
+
+    onAttachImage(task, attachment).catch((error) => {
+      setSaving(false);
+
+      alert(`Failed to load image! Error: ${error.message}`);
+    });
+  };
+
+  const handleRemoveImage = () => {
+    onCardUpdate(task);
+
+    onRemoveImage(task).catch((error) => {
+      setSaving(false);
+
+      alert(`Failed to remove image! Error: ${error.message}`);
+    });
+  };
 
   return (
     <Modal className={styles.modal} open onClose={onClose}>
@@ -72,7 +93,13 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onCardLoad, onCardUpdate })
               <CircularProgress />
             </div>
           ) : (
-            <Form errors={errors} onChange={setTask} task={task} />
+            <Form
+              errors={errors}
+              onChange={setTask}
+              onAttachImage={handleUploadImage}
+              onRemoveImage={handleRemoveImage}
+              task={task}
+            />
           )}
         </CardContent>
         <CardActions className={styles.actions}>
@@ -106,6 +133,8 @@ EditPopup.propTypes = {
   onCardLoad: PropTypes.func.isRequired,
   onCardUpdate: PropTypes.func.isRequired,
   onCardDestroy: PropTypes.func.isRequired,
+  onAttachImage: PropTypes.func.isRequired,
+  onRemoveImage: PropTypes.func.isRequired,
 };
 
 export default EditPopup;
