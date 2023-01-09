@@ -2,8 +2,6 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/borman73/task-manager/badge.svg)](https://coveralls.io/github/borman73/task-manager)
 
-[TaskManager deployed on Heroku](https://obscure-garden-26152.herokuapp.com)
-
 # TaskManager
 
 TaskManager is a tool for developers team that provides a Kanban-board to visualize project workflow. 
