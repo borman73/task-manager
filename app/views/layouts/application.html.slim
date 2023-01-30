@@ -34,6 +34,12 @@ html lang="en"
             = link_to "Sign up", new_developer_path, class: 'mdl-navigation__link'
             
     main#main.mdl-layout__content
+      p 
+        - flash.each do |type, message|
+          .flash
+          span.mdl-tooltip--large
+          b
+            = message
       .page-content
         = yield
     footer#footer.mdl-mini-footer
